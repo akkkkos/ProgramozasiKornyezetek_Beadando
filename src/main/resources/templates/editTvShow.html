@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Modify Page</title>
+
+  <link href=" https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/darkly/bootstrap.min.css " rel="stylesheet">
+  <style>
+    .container {
+      height: 100vh;
+      position: relative;
+    }
+
+    .center {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+  <div class="card text-center center col-sm-10">
+    <div class="card-header bg-primary">
+      Tv Műsor Adatainak Módosítása
+    </div>
+    <div class="card-body bg-dark">
+      <form method="post" th:action="@{/modify/__${userId}__/__${showId}}__}">
+        <div class="form-group row">
+          <label for="title" class="col-sm-4 col-form-label">Cím</label>
+          <div class="col-sm-8">
+
+            <input type="text"
+                   id="title"
+                   th:name="title"
+                   class="form-control"/>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="watchedEpisodeCount" class="col-sm-4 col-form-label">Megnézett epizódok száma</label>
+          <div class="col-sm-8">
+            <input type="text"
+                   id="watchedEpisodeCount"
+                   th:name="watchedEpisodeCount"
+                   class="form-control"/>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="episodeCount" class="col-sm-4 col-form-label">Epizódok száma</label>
+          <div class="col-sm-8">
+            <input type="text"
+                   id="episodeCount"
+                   th:name="episodeCount"
+                   class="form-control"/>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="episodeCount" class="col-sm-4 col-form-label">Státusz</label>
+          <select th:name="status" id="status" class="custom-select">
+            <option th:value="WATCHING" th:text="Megkezdett"></option>
+            <option th:value="PLAN_TO_WATCH" th:text="Megnézendő"></option>
+            <option th:value="COMPLETED" th:text="Befejezett"></option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-4">Módosítás</button>
+      </form>
+
+      <form method="get" th:action="@{/user/__${userId}__}">
+        <button type="submit" class="btn btn-danger mt-4">Vissza</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

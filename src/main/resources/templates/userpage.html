@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User Page</title>
+
+    <link href=" https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/darkly/bootstrap.min.css " rel="stylesheet">
+</head>
+<body>
+<div class="row">
+    <div class="card text-center col-sm-10 mx-auto">
+            <a th:href="@{/}" class="btn btn-danger mt-4 mb-2" role="button">Kijelentkezés</a>
+            <a th:href="@{/add/__${user.id}__}" class="btn btn-primary mt-2 mb-4" role="button">Hozzáadás</a>
+    </div>
+    <div th:if="${shows}" class="card text-center col-sm-10 mx-auto">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Cím</th>
+                <th scope="col">Megnézett Epizódok</th>
+                <th scope="col">Státusz</th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="show: ${shows}">
+                <td th:text="${show.title}">
+                <td th:text="${show.watchedEpisodeCount} + ' / ' + ${show.episodeCount}">
+                <td th:text="${show.status}">
+                <td>
+                    <a th:href="@{/modify/__${user.id}__/__${show.id}__}" class="btn btn-primary" role="button">Módosítás</a>
+                    <a th:href="@{/delete/__${user.id}__/__${show.id}__}" class="btn btn-danger" role="button">Törlés</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

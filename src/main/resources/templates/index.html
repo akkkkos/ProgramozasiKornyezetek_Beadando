@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+
+    <link href=" https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/darkly/bootstrap.min.css " rel="stylesheet">
+    <style>
+    .container {
+      height: 100vh;
+      position: relative;
+    }
+
+    .center {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="center">
+        <div class="card text-center" style="width: 30rem;">
+            <div class="card-header bg-primary">
+                Belépés | Regisztrálás
+            </div>
+            <div class="card-body bg-dark">
+                <form method="post" th:action="@{/login}">
+                    <div class="form-group">
+                        <label for="userName">Felhasználónév</label>
+                        <input type="text"
+                               id="userName"
+                               th:name="userName"
+                               class="form-control"/>
+                    </div>
+                    <button type="submit" class="btn btn-primary m-2">Belépés</button>
+                </form>
+
+                <form method="get" th:action="@{/register}">
+                    <button type="submit" class="btn btn-success mt-4">Regisztrálás</button>
+                </form>
+            </div>
+        </div>
+        <div th:if="${users}" class="card text-center mt-3" style="width: 30rem;">
+            <div class="card-header">
+                Felhasználónevek
+            </div>
+            <div class="card-body">
+                <p th:each="user: ${users}" th:text="${user.userName}">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

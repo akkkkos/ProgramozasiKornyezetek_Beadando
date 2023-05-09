@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Register Page</title>
+
+    <link href=" https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/darkly/bootstrap.min.css " rel="stylesheet">
+    <style>
+    .container {
+      height: 100vh;
+      position: relative;
+    }
+
+    .center {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card text-center center" style="width: 30rem;">
+        <div class="card-header bg-primary">
+            Regisztrálás
+        </div>
+        <div class="card-body bg-dark">
+            <form method="post" th:action="@{/register}">
+                <div class="form-group row">
+                    <label for="userName" class="col-sm-4 col-form-label">Felhasználónév</label>
+                    <div class="col-sm-8">
+
+                    <input type="text"
+                           id="userName"
+                           th:name="userName"
+                           class="form-control"/>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="name" class="col-sm-4 col-form-label">Teljes név</label>
+                    <div class="col-sm-8">
+                    <input type="text"
+                           id="name"
+                           th:name="name"
+                           class="form-control"/>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success mt-4">Regisztrálás</button>
+            </form>
+
+            <form method="get" th:action="@{/}">
+                <button type="submit" class="btn btn-danger mt-4">Vissza</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
