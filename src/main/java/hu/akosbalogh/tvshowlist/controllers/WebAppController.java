@@ -89,14 +89,37 @@ public class WebAppController {
     }
 
     /**
+     * Get page for editing Tv Show entries.
+     *
+     * @param userId User Id.
+     * @param showId Show Id.
+     * @param model Model.
+     * @return Returns the edit page to the user.
+     */
+    @GetMapping("/edit/{userId}/{showId}")
+    public String getEditPage(@PathVariable Long userId,
+                              @PathVariable Long showId,
+                              Model model) {
+        model.addAttribute("userId", userId);
+        model.addAttribute("showId", showId);
+
+        Optional<TvShow> tvShow = tvShowService.retrieveTvShowById(showId);
+        model.addAttribute("show", tvShow.get());
+        return "editTvShow";
+    }
+
+    /**
      * Delete Show from user's list then return user back to list.
      *
-     * @param id User id.
+     * @param userId User id.
+     * @param showId TvShow id.
      * @param model Model.
      * @return Returns the user to its page.
      */
     @GetMapping("/delete/{userId}/{showId}")
-    public RedirectView getAddPage(@PathVariable Long userId,@PathVariable Long showId, Model model) {
+    public RedirectView deleteShow(@PathVariable Long userId,
+                                   @PathVariable Long showId,
+                                   Model model) {
 
         tvShowService.deleteTvShowById(showId);
 
@@ -116,8 +139,30 @@ public class WebAppController {
     @PostMapping("/add/{id}")
     public RedirectView addShowToList(@PathVariable Long id, Model model, TvShow tvShow) {
         tvShow.setUserId(id);
+        tvShowService.createTvShow(tvShow);
         RedirectView redirectView = new RedirectView();
         redirectView.setUrl("/user/" + id);
+        return redirectView;
+    }
+
+    /**
+     * Update the Tv Show data with the user input.
+     *
+     * @param userId User Id.
+     * @param showId Show Id.
+     * @param model Model.
+     * @param tvShow The user's data of the Tv Show.
+     * @return Returns the user to its page.
+     */
+    @PostMapping("/edit/{userId}/{showId}")
+    public RedirectView editShowData(@PathVariable Long userId,
+                                     @PathVariable Long showId,
+                                     Model model, TvShow tvShow) {
+        tvShow.setUserId(userId);
+        tvShow.setId(showId);
+        tvShowService.updateTvShow(tvShow);
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("/user/" + userId);
         return redirectView;
     }
 

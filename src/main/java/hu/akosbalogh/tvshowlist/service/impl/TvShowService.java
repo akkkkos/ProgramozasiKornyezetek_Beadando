@@ -29,7 +29,7 @@ public class TvShowService implements TvShowServiceInterface {
 
     @Override
     public Optional<TvShow> retrieveTvShowById(Long id) {
-        return Optional.empty();
+        return tvShowRepository.getById(id);
     }
 
     @Override

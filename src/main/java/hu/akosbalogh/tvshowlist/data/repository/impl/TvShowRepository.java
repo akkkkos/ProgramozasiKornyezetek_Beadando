@@ -28,7 +28,7 @@ public class TvShowRepository implements TvShowRepositoryInterface<TvShow, Long>
 
     @Override
     public Optional<TvShow> getById(Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(STORAGE.get(id));
     }
 
     @Override
@@ -44,12 +44,16 @@ public class TvShowRepository implements TvShowRepositoryInterface<TvShow, Long>
     }
 
     @Override
-    public TvShow update(TvShow item) {
-        return null;
+    public TvShow update(TvShow show) {
+        Long id = show.getId();
+        STORAGE.put(id, show);
+        return STORAGE.get(id);
     }
 
+    //TODO fix deletion (deleting show may create new show with already existing id)
     @Override
     public void deleteById(Long id) {
         STORAGE.remove(id);
+
     }
 }

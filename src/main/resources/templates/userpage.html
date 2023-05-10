@@ -28,7 +28,7 @@
                 <td th:text="${show.watchedEpisodeCount} + ' / ' + ${show.episodeCount}">
                 <td th:text="${show.status}">
                 <td>
-                    <a th:href="@{/modify/__${user.id}__/__${show.id}__}" class="btn btn-primary" role="button">Módosítás</a>
+                    <a th:href="@{/edit/__${user.id}__/__${show.id}__}" class="btn btn-primary" role="button">Módosítás</a>
                     <a th:href="@{/delete/__${user.id}__/__${show.id}__}" class="btn btn-danger" role="button">Törlés</a>
                 </td>
             </tr>

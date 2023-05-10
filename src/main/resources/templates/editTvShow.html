@@ -28,7 +28,7 @@
       Tv Műsor Adatainak Módosítása
     </div>
     <div class="card-body bg-dark">
-      <form method="post" th:action="@{/modify/__${userId}__/__${showId}}__}">
+      <form method="post" th:action="@{/edit/__${userId}__/__${showId}__}">
         <div class="form-group row">
           <label for="title" class="col-sm-4 col-form-label">Cím</label>
           <div class="col-sm-8">
@@ -36,7 +36,9 @@
             <input type="text"
                    id="title"
                    th:name="title"
-                   class="form-control"/>
+                   class="form-control"
+                   th:value="__${show.getTitle()}__"
+            />
           </div>
         </div>
         <div class="form-group row">
@@ -45,7 +47,9 @@
             <input type="text"
                    id="watchedEpisodeCount"
                    th:name="watchedEpisodeCount"
-                   class="form-control"/>
+                   class="form-control"
+                   th:value="__${show.getWatchedEpisodeCount()}__"
+            />
           </div>
         </div>
         <div class="form-group row">
@@ -54,9 +58,13 @@
             <input type="text"
                    id="episodeCount"
                    th:name="episodeCount"
-                   class="form-control"/>
+                   class="form-control"
+                   th:value="__${show.getEpisodeCount()}__"
+            />
           </div>
         </div>
+
+        <!-- TODO Pick already known status -->
         <div class="form-group row">
           <label for="episodeCount" class="col-sm-4 col-form-label">Státusz</label>
           <select th:name="status" id="status" class="custom-select">
