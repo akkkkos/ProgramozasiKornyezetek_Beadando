@@ -193,13 +193,13 @@ public class WebAppController {
         Optional<User> optionalUser = userService.retrieveUserByUserName(user.getUserName());
         RedirectView redirectView = new RedirectView();
 
-        return optionalUser.map(song -> {
+        return optionalUser.map(oneUser -> {
             model.addAttribute("user", optionalUser);
             User newUser = optionalUser.get();
             redirectView.setUrl("user/" + newUser.getId());
             return redirectView;
         }).orElseGet(() -> {
-            redirectView.setUrl("/?bad=1");
+            redirectView.setUrl("/");
             return redirectView;
         });
     }
