@@ -146,7 +146,6 @@
 						HiddenField,
 						HideUtilityClassConstructor,
 						JavadocPackage,
-						<!--FileTabCharacter,-->
 						JavadocVariable
 					</violationIgnore>
 					<excludes>
