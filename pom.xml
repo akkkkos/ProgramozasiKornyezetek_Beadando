@@ -97,11 +97,10 @@
 				</executions>
 				<configuration>
 					<excludes>
-						<exclude>hu\nye\progkor\musiccatalog\data\model\**</exclude>
-						<exclude>hu\nye\progkor\musiccatalog\web\controller\**</exclude>
-						<exclude>hu\nye\progkor\musiccatalog\MusicCatalogApplication.class</exclude>
-						<exclude>hu\nye\progkor\musiccatalog\data\repository\**</exclude>
-						<exclude>hu\nye\progkor\musiccatalog\web\configuration\**</exclude>
+						<exclude>hu\akosbalogh\tvshowlist\data\model\**</exclude>
+						<exclude>hu\akosbalogh\tvshowlist\data\repository\**</exclude>
+						<exclude>hu\akosbalogh\tvshowlist\controllers\**</exclude>
+						<exclude>hu\akosbalogh\tvshowlist\TvshowlistApplication.class</exclude>
 						<exclude>*Test</exclude>
 					</excludes>
 					<rules>
@@ -149,8 +148,7 @@
 						JavadocVariable
 					</violationIgnore>
 					<excludes>
-						**/model/**/*,
-						**/MusicCatalogApplication.java
+						**/model/**/*
 					</excludes>
 				</configuration>
 				<executions>
