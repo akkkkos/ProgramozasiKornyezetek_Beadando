@@ -43,12 +43,12 @@ public class UserService implements UserServiceInterface {
     }
 
     @Override
-    public User updateUser(User show) {
-        return null;
+    public User updateUser(User user) {
+        return userRepository.update(user);
     }
 
     @Override
     public void deleteUserById(Long id) {
-
+        userRepository.deleteById(id);
     }
 }

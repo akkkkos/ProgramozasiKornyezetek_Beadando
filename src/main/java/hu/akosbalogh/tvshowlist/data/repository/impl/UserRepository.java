@@ -17,9 +17,12 @@ public class UserRepository implements UserRepositoryInterface<User, Long> {
 
     private static final Map<Long, User> STORAGE = new HashMap<>();
 
+    private int idCounter = 0;
+
     @Override
     public User save(User user) {
-        Long id = STORAGE.size() + 1L;
+        Long id = idCounter +  1L;
+        idCounter++;
         user.setId(id);
         STORAGE.put(id, user);
         return STORAGE.get(id);
@@ -44,12 +47,14 @@ public class UserRepository implements UserRepositoryInterface<User, Long> {
     }
 
     @Override
-    public User update(User item) {
-        return null;
+    public User update(User user) {
+        Long id = user.getId();
+        STORAGE.put(id, user);
+        return STORAGE.get(id);
     }
 
     @Override
     public void deleteById(Long id) {
-
+        STORAGE.remove(id);
     }
 }

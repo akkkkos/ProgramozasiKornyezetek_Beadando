@@ -16,11 +16,13 @@ import org.springframework.stereotype.Repository;
 public class TvShowRepository implements TvShowRepositoryInterface<TvShow, Long> {
 
     private static final Map<Long, TvShow> STORAGE = new HashMap<>();
+    private int idCounter = 0;
 
 
     @Override
     public TvShow save(TvShow show) {
-        Long id = STORAGE.size() + 1L;
+        Long id = idCounter +  1L;
+        idCounter++;
         show.setId(id);
         STORAGE.put(id, show);
         return STORAGE.get(id);
@@ -50,10 +52,8 @@ public class TvShowRepository implements TvShowRepositoryInterface<TvShow, Long>
         return STORAGE.get(id);
     }
 
-    //TODO fix deletion (deleting show may create new show with already existing id)
     @Override
     public void deleteById(Long id) {
         STORAGE.remove(id);
-
     }
 }
