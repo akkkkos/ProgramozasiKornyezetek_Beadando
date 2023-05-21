@@ -35,6 +35,7 @@
 
             <input type="text"
                    id="title"
+                   required
                    th:name="title"
                    class="form-control"
                    th:value="__${show.getTitle()}__"
@@ -44,7 +45,9 @@
         <div class="form-group row">
           <label for="watchedEpisodeCount" class="col-sm-4 col-form-label">Megnézett epizódok száma</label>
           <div class="col-sm-8">
-            <input type="text"
+            <input type="number"
+                   min="0"
+                   required
                    id="watchedEpisodeCount"
                    th:name="watchedEpisodeCount"
                    class="form-control"
@@ -55,7 +58,9 @@
         <div class="form-group row">
           <label for="episodeCount" class="col-sm-4 col-form-label">Epizódok száma</label>
           <div class="col-sm-8">
-            <input type="text"
+            <input type="number"
+                   min="0"
+                   required
                    id="episodeCount"
                    th:name="episodeCount"
                    class="form-control"
@@ -64,13 +69,12 @@
           </div>
         </div>
 
-        <!-- TODO Pick already known status -->
         <div class="form-group row">
           <label for="episodeCount" class="col-sm-4 col-form-label">Státusz</label>
           <select th:name="status" id="status" class="custom-select">
-            <option th:value="WATCHING" th:text="Megkezdett"></option>
-            <option th:value="PLAN_TO_WATCH" th:text="Megnézendő"></option>
-            <option th:value="COMPLETED" th:text="Befejezett"></option>
+            <option th:value="WATCHING" th:text="Megkezdett" th:selected="${show.status == T(hu.akosbalogh.tvshowlist.data.model.Status).WATCHING}"></option>
+            <option th:value="PLAN_TO_WATCH" th:text="Megnézendő" th:selected="${show.status == T(hu.akosbalogh.tvshowlist.data.model.Status).PLAN_TO_WATCH}"></option>
+            <option th:value="COMPLETED" th:text="Befejezett" th:selected="${show.status == T(hu.akosbalogh.tvshowlist.data.model.Status).COMPLETED}"></option>
           </select>
         </div>
 

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>User Page</title>
+    <title th:text="@{__${user.name}__}"></title>
 
     <link href=" https://cdn.jsdelivr.net/npm/bootswatch@5.2.3/dist/darkly/bootstrap.min.css " rel="stylesheet">
 </head>
@@ -26,7 +26,11 @@
             <tr th:each="show: ${shows}">
                 <td th:text="${show.title}">
                 <td th:text="${show.watchedEpisodeCount} + ' / ' + ${show.episodeCount}">
-                <td th:text="${show.status}">
+                <td th:switch="${show.status}">
+                    <span th:case="${T(hu.akosbalogh.tvshowlist.data.model.Status).COMPLETED}">Befejezett</span>
+                    <span th:case="${T(hu.akosbalogh.tvshowlist.data.model.Status).WATCHING}">Megkezdett</span>
+                    <span th:case="${T(hu.akosbalogh.tvshowlist.data.model.Status).PLAN_TO_WATCH}">Megnézendő</span>
+                </td>
                 <td>
                     <a th:href="@{/edit/__${user.id}__/__${show.id}__}" class="btn btn-primary" role="button">Módosítás</a>
                     <a th:href="@{/delete/__${user.id}__/__${show.id}__}" class="btn btn-danger" role="button">Törlés</a>

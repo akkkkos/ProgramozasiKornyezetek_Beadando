@@ -4,7 +4,6 @@ import hu.akosbalogh.tvshowlist.data.model.TvShow;
 import hu.akosbalogh.tvshowlist.data.model.User;
 import hu.akosbalogh.tvshowlist.service.impl.TvShowService;
 import hu.akosbalogh.tvshowlist.service.impl.UserService;
-import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -22,13 +20,13 @@ import java.util.Optional;
  */
 @Controller
 @RequestMapping("/")
-public class WebAppController {
+public class WebController {
 
     private final TvShowService tvShowService;
     private final UserService userService;
 
     @Autowired
-    public WebAppController(TvShowService tvShowService, UserService userService) {
+    public WebController(TvShowService tvShowService, UserService userService) {
         this.tvShowService = tvShowService;
         this.userService = userService;
     }
@@ -60,7 +58,7 @@ public class WebAppController {
      * @return Returns the user to its page.
      */
     @GetMapping("/user/{id}")
-    public String getRegisterPage(@PathVariable Long id, Model model) {
+    public String getUserPage(@PathVariable Long id, Model model) {
 
         Optional<User> optionalUser = userService.retrieveUserById(id);
 
