@@ -168,7 +168,7 @@
 		<repository>
 			<id>github</id>
 			<name>GitHub Packages</name>
-			<url>https://maven.pkg.github.com/akkkkos/ProgramozasiKornyezetek_Beadando</url>
+			<url>https://maven.pkg.github.com/akkkkos/programozasi_kornyezetek_beadando</url>
 		</repository>
 	</distributionManagement>
 
